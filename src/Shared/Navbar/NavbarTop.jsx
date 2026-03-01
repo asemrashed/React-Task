@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import useUser from "../../Security/useUser";
 import { FaUserCircle } from "react-icons/fa";
 import useSmallScreen from "../../Hooks/useSmallScreen";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 
 const NavbarTop = () => {
   const { open, setOpen, sidebarRef } = useContext(OrderContext);
@@ -62,18 +63,23 @@ const NavbarTop = () => {
 
   return (
     <div className="bg-white py-pt_primary text-_white w-full shadow-md border-b-1 ">
-      <ul className="flex gap-gap_primary justify-between px-pt_secondary ">
+      <ul className="flex gap-gap_primary justify-end px-pt_secondary ">
         <div className="flex items-center gap-gap_primary text-text_sm font-semibold  lg:hidden">
           <MdMenu
             onClick={() => setOpen(!open)}
             className="text-text_xxl cursor-pointer text-black"
           />
         </div>
-        <div className="hidden lg:block"></div>
+        <div className="text-black flex items-center">
+          <Link to='/cart' className="relative">
+           <AiOutlineShoppingCart className="text-xl"/>
+           </Link>
+        </div>
 
         <div
           className="flex flex-col items-center justify-center text-text_sm font-semibold relative group"
         >
+          <div></div>
           <div className="flex items-center gap-8">
           <h1 className="text-blue-500 text-xl font-medium">{userData?.userData.name}</h1>
          {userData?.userData.image ? 
