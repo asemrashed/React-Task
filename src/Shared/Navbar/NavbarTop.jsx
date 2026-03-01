@@ -10,7 +10,7 @@ import useSmallScreen from "../../Hooks/useSmallScreen";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 
 const NavbarTop = () => {
-  const { open, setOpen, sidebarRef } = useContext(OrderContext);
+  const { open, setOpen, sidebarRef, cart } = useContext(OrderContext);
   const [isSmallScreen] = useSmallScreen();
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
@@ -72,8 +72,13 @@ const NavbarTop = () => {
         </div>
         <div className="text-black flex items-center">
           <Link to='/cart' className="relative">
-           <AiOutlineShoppingCart className="text-xl"/>
-           </Link>
+          <AiOutlineShoppingCart className="text-2xl" />
+          {cart && cart.length > 0 && (
+            <span className="absolute -top-2 -right-2 bg-blue-500 text-white text-xs rounded-full px-1">
+              {cart.length}
+            </span>
+          )}
+          </Link>
         </div>
 
         <div
