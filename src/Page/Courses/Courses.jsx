@@ -1,9 +1,11 @@
 import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { OrderContext } from '../../ContextAPIs/OrderProvider';
+import Swal from 'sweetalert2'
 
 const Courses = () => {
+  const { cart, setCart } = useContext(OrderContext);
     const [courses, setCourses] = useState([]);
-    console.log(courses, 'courses')
 
     useEffect(() =>{
         const fetchCourses = async () => {
@@ -16,6 +18,18 @@ const Courses = () => {
         };
         fetchCourses();
     },[])
+
+    const handleAddToCart = (course) => {
+        if(!cart.length > 0){
+            setCart([...cart, course])
+        }else{
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "One Course already in cart!"
+            });
+        }
+    }
 
     return (
         <div className="m-mt_16px">
@@ -57,8 +71,12 @@ const Courses = () => {
                                 {/* <span className="text-green-600 text-sm">Earn Tk 48</span> */}
                             </div>
                             <div className="mt-4 flex gap-2">
-                                <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-500 w-full font-bold text-md">Add To Cart</button>
-
+                                <button 
+                                    className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-500 w-full font-bold text-md"
+                                    onClick={() => handleAddToCart(course)}
+                                >
+                                        Add To Cart
+                                </button>
                             </div>
                         </div>
                     </div>
