@@ -4,7 +4,7 @@ import { OrderContext } from '../../ContextAPIs/OrderProvider';
 import Swal from 'sweetalert2'
 
 const Courses = () => {
-  const { cart, setCart } = useContext(OrderContext);
+  const { cart, setCart, setQty } = useContext(OrderContext);
     const [courses, setCourses] = useState([]);
 
     useEffect(() =>{
@@ -20,8 +20,9 @@ const Courses = () => {
     },[])
 
     const handleAddToCart = (course) => {
-        if(!cart.length > 0){
+        if(cart.length === 0){
             setCart([...cart, course])
+            setQty(1)
         }else{
             Swal.fire({
                 icon: "error",

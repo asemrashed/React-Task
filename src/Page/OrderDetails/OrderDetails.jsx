@@ -1,7 +1,10 @@
+import { useContext } from "react";
 import TrackOrder from "./TrackOrder";
+import { OrderContext } from "../../ContextAPIs/OrderProvider";
 
 
 const OrderDetails = () => {
+  const { cart, setCart, setQty } = useContext(OrderContext);
 
 
     return (

@@ -6,7 +6,8 @@ const OrderProvider = ({children}) => {
     const [open, setOpen] = useState(true)
     const sidebarRef = useRef(null);
     const [cart, setCart] = useState([])
-    
+    const [qty, setQty] = useState(0)
+    const [checkoutData, setCheckoutData] = useState({})
 
     const info = {
         examID,
@@ -15,7 +16,11 @@ const OrderProvider = ({children}) => {
         setOpen,
         sidebarRef,
         cart,
-        setCart
+        setCart,
+        qty,
+        setQty,
+        checkoutData,
+        setCheckoutData
     }
     return (
         <OrderContext.Provider value={info} >
